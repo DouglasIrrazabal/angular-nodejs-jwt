@@ -3,6 +3,8 @@ const app = express();
 
 require('./database');
 
+app.use(express.json());
+
 app.use('/api', require('./routes/index'));
 
 // starting the server
