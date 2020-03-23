@@ -27,4 +27,70 @@ router.post('/singin', async (req, res) => {
 
 });
 
+router.get('/tasks', (req, res) => {
+    res.json([
+        {
+            _id: 1,
+            name: 'Task one',
+            description: 'lorem ipsum',
+            date: '22/03/2020'
+        },
+        {
+            _id: 2,
+            name: 'Task two',
+            description: 'lorem ipsum',
+            date: '22/03/2020'
+        },
+        {
+            _id: 3,
+            name: 'Task three',
+            description: 'lorem ipsum',
+            date: '22/03/2020'
+        }
+    ])
+});
+
+router.get('/private-tasks', verifyToken, (req, res) => {
+    res.json([
+        {
+            _id: 1,
+            name: 'Task one',
+            description: 'lorem ipsum',
+            date: '22/03/2020'
+        },
+        {
+            _id: 2,
+            name: 'Task two',
+            description: 'lorem ipsum',
+            date: '22/03/2020'
+        },
+        {
+            _id: 3,
+            name: 'Task three',
+            description: 'lorem ipsum',
+            date: '22/03/2020'
+        }
+    ])
+});
+
+router.get('/profile', verifyToken, (req, res) => {
+    res.send(req.userId);
+});
+
 module.exports = router;
+
+function verifyToken(req, res, next) {
+    if(!req.headers.authorization) {
+        return res.status(401).send('Unauthorized request');
+    }
+
+    const token = req.headers.authorization.split(' ')[1]
+    if (token === 'null') {
+        return res.status(401).send('Unauthorized request');
+    }
+
+    const payload = jwt.verify(token, 'secretKey');
+    req.userId = payload._id;
+    next();
+
+};
