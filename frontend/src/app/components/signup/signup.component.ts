@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
-import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-signup',

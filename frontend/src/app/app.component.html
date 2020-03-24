@@ -15,7 +15,7 @@
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-          <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
+          <ng-container *ngIf="!authService.LoggedIn(); else loggedIn">
             <li class="nav-item">
               <a class="nav-link" routerLink="/signin" routerLinkActive="active">SignIn</a>
             </li>
@@ -25,7 +25,7 @@
           </ng-container>
           <ng-template #loggedIn>
             <li class="nav-item">
-              <a class="nav-link" style="cursor: pointer;" (click)="authService.logout()">Logout</a>
+              <a class="nav-link" style="cursor: pointer;" (click)="authService.Logout()">Logout</a>
             </li>
           </ng-template>
         </ul>
